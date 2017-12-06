@@ -34,5 +34,9 @@
 	<!-- 发布服务 -->
 	<dubbo:service interface="com.e3.manager.service.ItemService"
 		ref="itemServiceImpl" />
+	<bean id="tbItemCatServiceImpl" class="com.e3.manager.service.impl.TbItemCatServiceImpl"></bean>
+	<!-- 发布服务 -->
+	<dubbo:service interface="com.e3.manager.service.TbItemCatService"
+		ref="tbItemCatServiceImpl" />
 	
 </beans>
