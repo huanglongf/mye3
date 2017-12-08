@@ -1,15 +1,20 @@
 package com.e3.manager.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.e3.manager.service.ItemService;
+import com.e3.mapper.TbItemDescMapper;
 import com.e3.mapper.TbItemMapper;
 import com.e3.pojo.TbItem;
+import com.e3.pojo.TbItemDesc;
 import com.e3.pojo.TbItemExample;
 import com.e3.utils.DatagridPagebean;
+import com.e3.utils.E3mallResult;
+import com.e3.utils.IDUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -18,6 +23,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private TbItemMapper mapper;
+	
+	@Autowired
+	private TbItemDescMapper descMapper;
 
 	public TbItem findItemById(Long itemId) {
 		// TODO Auto-generated method stub
@@ -47,6 +55,28 @@ public class ItemServiceImpl implements ItemService {
 		return pagebean;
 		
 		
+	}
+
+	@Override
+	public E3mallResult saveItem(TbItem tbItem, TbItemDesc itemDesc) {
+		// TODO Auto-generated method stub
+		long itemId = IDUtils.genItemId();
+		tbItem.setId(itemId);
+		
+		tbItem.setStatus((byte)1);
+		Date date = new Date();
+		tbItem.setCreated(date);
+		tbItem.setUpdated(date);
+		
+		mapper.insert(tbItem);
+		
+		itemDesc.setItemId(itemId);
+		itemDesc.setCreated(date);
+		itemDesc.setUpdated(date);
+		
+		descMapper.insert(itemDesc);
+		
+		return E3mallResult.ok();
 	}
 
 }
