@@ -29,5 +29,11 @@
 		interface="com.e3.manager.service.ItemService" timeout="1000000" retries="2"/>
 	<dubbo:reference id="tbItemCatService"
 		interface="com.e3.manager.service.TbItemCatService" timeout="1000000" retries="2"/>
+	<dubbo:reference id="contentCategoryService"
+		interface="com.e3.content.service.ContentCategoryService" timeout="1000000" retries="2"/>
+		
+	<dubbo:reference id="contentService"
+		interface="com.e3.content.service.ContentService" timeout="1000000" retries="2"/>
+	
 	
 </beans>
