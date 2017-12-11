@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.e3.manager.service.ItemService;
 import com.e3.mapper.TbItemDescMapper;
 import com.e3.mapper.TbItemMapper;
+import com.e3.mapper.TbItemParamItemMapper;
 import com.e3.pojo.TbItem;
 import com.e3.pojo.TbItemDesc;
 import com.e3.pojo.TbItemExample;
+import com.e3.pojo.TbItemParamItem;
 import com.e3.utils.DatagridPagebean;
 import com.e3.utils.E3mallResult;
 import com.e3.utils.IDUtils;
@@ -26,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Autowired
 	private TbItemDescMapper descMapper;
+	
+	@Autowired
+	private TbItemParamItemMapper itemParamItemMapper; 
 
 	public TbItem findItemById(Long itemId) {
 		// TODO Auto-generated method stub
@@ -58,7 +63,7 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public E3mallResult saveItem(TbItem tbItem, TbItemDesc itemDesc) {
+	public E3mallResult saveItem(TbItem tbItem, TbItemDesc itemDesc,String itemParams) {
 		// TODO Auto-generated method stub
 		long itemId = IDUtils.genItemId();
 		tbItem.setId(itemId);
@@ -75,6 +80,14 @@ public class ItemServiceImpl implements ItemService {
 		itemDesc.setUpdated(date);
 		
 		descMapper.insert(itemDesc);
+		
+		TbItemParamItem itemParamItem = new TbItemParamItem();
+		itemParamItem.setItemId(itemId);
+		itemParamItem.setParamData(itemParams);
+		itemParamItem.setCreated(date);
+		itemParamItem.setUpdated(date);
+		
+		itemParamItemMapper.insertSelective(itemParamItem);
 		
 		return E3mallResult.ok();
 	}

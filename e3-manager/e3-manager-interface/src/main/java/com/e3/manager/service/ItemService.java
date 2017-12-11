@@ -12,6 +12,6 @@ public interface ItemService {
 	
 	public DatagridPagebean findItemListByPage(Integer page,Integer rows);
 	
-	public E3mallResult  saveItem(TbItem tbItem,TbItemDesc itemDesc);
+	public E3mallResult  saveItem(TbItem tbItem,TbItemDesc itemDesc,String itemParams);
 }
 	

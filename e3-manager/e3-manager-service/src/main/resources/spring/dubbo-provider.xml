@@ -39,4 +39,8 @@
 	<dubbo:service interface="com.e3.manager.service.TbItemCatService"
 		ref="tbItemCatServiceImpl" />
 	
+	<bean id="itemParamServiceImpl" class="com.e3.manager.service.impl.ItemParamServiceImpl"></bean>
+	<!-- 规格模板服务 -->
+	<dubbo:service interface="com.e3.manager.service.ItemParamService"
+		ref="itemParamServiceImpl" />
 </beans>
