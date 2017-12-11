@@ -38,8 +38,8 @@ public  class ItemController {
 	
 	@RequestMapping("/item/save")
 	@ResponseBody
-	public E3mallResult saveItem(TbItem tbItem,TbItemDesc itemDesc){
-		E3mallResult result = service.saveItem(tbItem, itemDesc);
+	public E3mallResult saveItem(TbItem tbItem,TbItemDesc itemDesc,String itemParams){
+		E3mallResult result = service.saveItem(tbItem, itemDesc,itemParams);
 		return result;
 	};
 }
